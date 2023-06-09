@@ -91,8 +91,8 @@ const ExchangeHistoryDisplay = ({
               ?.sort((a, b) => (a.date < b.date ? 1 : -1))
               .map(({ date, rate }) => (
                 <tr key={date}>
-                  <td>{convertDate(date)}</td>
-                  <td>{rate}</td>
+                  <td>{date && convertDate(date)}</td>
+                  <td>{rate && rate}</td>
                 </tr>
               ))}
           </tbody>
@@ -117,15 +117,15 @@ const ExchangeHistoryDisplay = ({
           <tbody>
             <tr>
               <td>Lowest</td>
-              <td>{lowest}</td>
+              <td>{lowest && lowest}</td>
             </tr>
             <tr>
               <td>Highest</td>
-              <td>{highest}</td>
+              <td>{highest && highest}</td>
             </tr>
             <tr>
               <td>Average</td>
-              <td>{average}</td>
+              <td>{average && average}</td>
             </tr>
           </tbody>
         </HistoryTable>

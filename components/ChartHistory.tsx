@@ -10,10 +10,10 @@ const ChartHistory = ({ exchangeHistory }: ChartHistoryProps) => {
     const data =
       exchangeHistory &&
       Object.entries(exchangeHistory ?? {})
-        .map(([date, values]) => ({
+        .map(([_, values]) => ({
           rate: values?.USD,
         }))
-        .map(({ rate }) => rate);
+        .map(({ rate }) => Number(rate));
 
     return data;
   };
