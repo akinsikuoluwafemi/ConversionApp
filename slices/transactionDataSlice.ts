@@ -35,7 +35,14 @@ export const getAllCurrencies = createAsyncThunk(
   'transactionData/getAllCurrencies',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${base_url}/latest`);
+      const { data } = await axios.get(
+        `${base_url}/exchangerates_data/latest`,
+        {
+          headers: {
+            apiKey: process.env.NEXT_PUBLIC_API_KEY as string,
+          },
+        },
+      );
       return {
         base: data.base,
         rates: data.rates,
@@ -60,7 +67,12 @@ export const convertToAnotherCurrency = createAsyncThunk(
   ) => {
     try {
       const { data } = await axios.get(
-        `${base_url}/convert?from=${obj.from}&to=${obj.to}&amount=${obj.amount}`,
+        `${base_url}/exchangerates_data/convert?from=${obj.from}&to=${obj.to}&amount=${obj.amount}`,
+        {
+          headers: {
+            apiKey: process.env.NEXT_PUBLIC_API_KEY as string,
+          },
+        },
       );
       return {
         rate: data['info']['rate'],
@@ -82,7 +94,12 @@ export const getExchangeHistory = createAsyncThunk(
   ) => {
     try {
       const { data } = await axios.get(
-        `${base_url}/timeseries?start_date=${obj.start_date}&end_date=${obj.end_date}&symbols=${obj.symbols}&base=EUR`,
+        `${base_url}/exchangerates_data/timeseries?start_date=${obj.start_date}&end_date=${obj.end_date}&symbols=${obj.symbols}&base=EUR`,
+        {
+          headers: {
+            apiKey: process.env.NEXT_PUBLIC_API_KEY as string,
+          },
+        },
       );
 
       return {

@@ -1,7 +1,7 @@
 import { AllCurrencies } from '@/types/globalTypes';
 
 export const getCurr = (obj: AllCurrencies) => {
-  const currencies = Object.keys(obj.rates);
+  const currencies = obj && Object?.keys(obj?.rates);
   return currencies;
 };
 
